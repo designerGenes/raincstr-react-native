@@ -32,7 +32,7 @@ export function tracksFetchDataSuccess(response) {
 };
 
 export function tracksFetchData(url) {
-  console.log('FETCHING DATA at ' + url);
+  // console.log('FETCHING DATA at ' + url);
   return (dispatch) => {
     // console.log(dispatch.TrackReducer);
     dispatch(setTracksIsLoading(true));

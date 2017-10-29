@@ -7,6 +7,8 @@ import {tracksFetchData} from '../ducks/tracks';
 import {MANIFEST_URL} from '../assets/constants';
 import AmbientTrackCell from './AmbientTrackCell';
 
+import store from '../store';
+
 const mapStateToProps = state => ({
   tracks: state.tracks,
   hasErrored: state.hasErrored,
@@ -15,7 +17,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (url) => dispatch(tracksFetchData(url))
+    fetchData: (url) => dispatch(tracksFetchData(url)),
   }
 }
 
@@ -26,21 +28,31 @@ class AmbientTrackCarousel extends Component {
 
   constructor(props) {
     super(props);
-
     this._renderItem = this._renderItem.bind(this);
+    this._onSnapToItem = this._onSnapToItem.bind(this);
+    this.state = {
+      cells: [],
+      focusCellIndex: 0
+    }
   }
 
 
   _renderItem({item, index} ) {
     const {height, width} = this.props;
     const cellWidth = width * 0.8;
-    return (
-      <AmbientTrackCell
-        height={height}
-        width={cellWidth}
-        track={item} />
-    )
+    const newCell = <AmbientTrackCell
+      height={height}
+      width={cellWidth}
+      onPlay={this._onPlayBegan}
+      track={item} />;
+
+    return newCell;
+
   }
+
+  _onPlayBegan(cell) {  }
+
+
 
   renderForHasErrored() {
     return (
@@ -58,11 +70,17 @@ class AmbientTrackCarousel extends Component {
     )
   }
 
+  _onSnapToItem(index) {
+    this.setState({
+      focusCellIndex: index
+    })
+    console.log(this._carousel.props);
+    let focusCell = this.state.cells[index];
+
+  }
+
   render() {
     const {height, width} = this.props;
-
-    console.log(this.props);
-
     var tracks = this.props.tracks.tracks || [];
 
     if (this.props.isLoading) {
@@ -83,6 +101,7 @@ class AmbientTrackCarousel extends Component {
               itemWidth={width * 0.8}
               containerCustomStyle={[Masonry.fillsContainer, styles.carouselContainer]}
               activeSlideAlignment='start'
+              onSnapToItem={this._onSnapToItem}
               contentContainerStyle={[{backgroundColor: 'black'}]}/>
       </View>
      )

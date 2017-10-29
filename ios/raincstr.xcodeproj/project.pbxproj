@@ -22,7 +22,6 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		4EB2DF4103C04B7AA30A2B21 /* libReactNativeAudioToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7235B1DECA645B6A19A0636 /* libReactNativeAudioToolkit.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		74CEC8B2F43A4AEF810B6E6C /* libGoogleCast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6BD522B704F1CB2DEB3BB /* libGoogleCast.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		F425071E36F04808CF0ED0A2 /* libPods-raincstr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B03035D2305B6CA498EF940B /* libPods-raincstr.a */; };
@@ -270,13 +269,6 @@
 			remoteGlobalIDString = 5E8FD9831D269F5D00CF68CC;
 			remoteInfo = ReactNativeAudioToolkit;
 		};
-		FEF9CE2F1FA5233F009515E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3A4B53820574628981E3535 /* GoogleCast.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = GoogleCast;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -307,7 +299,6 @@
 		B03035D2305B6CA498EF940B /* libPods-raincstr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-raincstr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B6BD522B704F1CB2DEB3BB /* libGoogleCast.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libGoogleCast.a; sourceTree = "<group>"; };
 		D7235B1DECA645B6A19A0636 /* libReactNativeAudioToolkit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeAudioToolkit.a; sourceTree = "<group>"; };
-		E3A4B53820574628981E3535 /* GoogleCast.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = GoogleCast.xcodeproj; path = "../node_modules/react-native-google-cast/ios/GoogleCast.xcodeproj"; sourceTree = "<group>"; };
 		FE75DEC81FA3943000F96D32 /* FilsonSoft-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonSoft-Bold.otf"; sourceTree = "<group>"; };
 		FE75DECD1FA3956100F96D32 /* FilsonSoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FilsonSoftRegular.otf; sourceTree = "<group>"; };
 		FEF9CDC31FA516BA009515E1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -332,7 +323,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				F425071E36F04808CF0ED0A2 /* libPods-raincstr.a in Frameworks */,
-				74CEC8B2F43A4AEF810B6E6C /* libGoogleCast.a in Frameworks */,
 				4EB2DF4103C04B7AA30A2B21 /* libReactNativeAudioToolkit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,7 +484,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				E3A4B53820574628981E3535 /* GoogleCast.xcodeproj */,
 				415A72E168B74A9AB378736D /* ReactNativeAudioToolkit.xcodeproj */,
 			);
 			name = Libraries;
@@ -569,14 +558,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		FEF9CE2C1FA5233E009515E1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FEF9CE301FA5233F009515E1 /* libGoogleCast.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -627,10 +608,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = FEF9CE2C1FA5233E009515E1 /* Products */;
-					ProjectRef = E3A4B53820574628981E3535 /* GoogleCast.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -930,13 +907,6 @@
 			remoteRef = FE7D44391FA5582900437FCC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FEF9CE301FA5233F009515E1 /* libGoogleCast.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGoogleCast.a;
-			remoteRef = FEF9CE2F1FA5233F009515E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1061,7 +1031,6 @@
 				DEVELOPMENT_TEAM = 5DYJ7634L5;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-google-cast/ios",
 					"$(SRCROOT)/../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/**",
 					"$(SRCROOT)/../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/**",
 				);
@@ -1090,7 +1059,6 @@
 				DEVELOPMENT_TEAM = 5DYJ7634L5;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-google-cast/ios",
 					"$(SRCROOT)/../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/**",
 					"$(SRCROOT)/../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/**",
 				);

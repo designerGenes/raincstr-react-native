@@ -4,13 +4,12 @@ import Images from '../assets/images';
 
 export default class DJPlayPauseButton extends Component {
   buttonStates = [Images.suspended,
-                  Images.playing,
-                ]
+                  Images.playing]
   constructor(props) {
     props.style = props.style || {};
     super(props);
     this.state = {
-      buttonState: 0
+      buttonState: props.buttonState || 0
     }
     this._onPress = this._onPress.bind(this);
     this.toggleButtonState = this.toggleButtonState.bind(this);
