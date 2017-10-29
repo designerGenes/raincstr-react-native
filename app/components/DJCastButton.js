@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Images from '../assets/images';
+import {connect} from 'react-redux';
 
+const mapStateToProps = state => ({
+  castState: state.app.castState
+})
 
+const mapDispatchToProps = (dispatch) => {
+  return {
 
+  }
+}
 
-export default class DJCastButton extends Component {
+class DJCastButton extends Component {
   buttonStates = [Images.castButtonInactive,
                         Images.castButtonActive,
                         Images.castButtonWorking0,
@@ -15,12 +23,26 @@ export default class DJCastButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonState: 0
+      buttonState: props.castState
     }
   }
 
+  _onPress() {
+
+    switch (this.props.castState) {
+      case 0:
+      case 3:
+        
+        // launch connect screen.  should also eventually cover case 3 (loading)
+        break;
+      case 1:
+        // launch control screen
+        break;
+    }
+    if (this.props.onPress) { this.props.onPress() }
+  }
+
   render() {
-    console.log('button state: ' + this.state.buttonState);
     return (
       <TouchableOpacity onPress={this.props.onPress}>
         <Image
@@ -29,3 +51,5 @@ export default class DJCastButton extends Component {
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(DJCastButton);

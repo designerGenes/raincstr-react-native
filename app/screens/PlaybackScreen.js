@@ -4,17 +4,16 @@ import {Button} from 'react-native-elements';
 import {Masonry, Colors} from '../config';
 import Images from '../assets/images';
 import {DJCastButton, AmbientTrackCarousel} from '../components';
-import {connect} from 'react-redux';
 var {height, width} = Dimensions.get('window');
 
 
 class PlaybackScreen extends Component {
+  static navigationOptions = {
+    title: 'Playback',
+    header: null
+  }
   constructor(props) {
     super(props);
-    this.state = {
-      foo: 'bar'
-    }
-
     this._onPressSettings = this._onPressSettings.bind(this);
     this._onPressCast = this._onPressCast.bind(this);
   }
@@ -25,7 +24,7 @@ class PlaybackScreen extends Component {
 
   _onPressCast() {
     const {navigate} = this.props.navigation;
-    navigate('OtherPlaybackScreen');
+    navigate('CastSessionScreen');
   }
 
   render() {
@@ -51,9 +50,6 @@ class PlaybackScreen extends Component {
         </View>
         <View style={{width: '100%', height: '8%', backgroundColor: 'black'}} />
       </View>
-
-
-
     );
   }
 }
@@ -64,7 +60,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     padding: 0,
     width: '100%',
-    paddingTop: 24,
+    paddingTop: 36,
     paddingBottom: 16
   },
   logoTitleText: {
@@ -73,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect()(PlaybackScreen);
+export default PlaybackScreen;
