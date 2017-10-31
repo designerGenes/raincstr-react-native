@@ -4,9 +4,8 @@ import PlaybackScreen from '../screens/PlaybackScreen';
 import CastSessionScreen from '../screens/CastSessionScreen';
 
 export default StackNavigator({
-  CastSessionScreen: {screen: CastSessionScreen},
   PlaybackScreen: {screen: PlaybackScreen},
-  
+  CastSessionScreen: {screen: CastSessionScreen},  
 },
   { navigationOptions: {
      headerTintColor: 'black'
