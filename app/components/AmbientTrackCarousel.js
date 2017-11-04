@@ -6,12 +6,11 @@ import {connect} from 'react-redux';
 import {tracksFetchData} from '../ducks/tracks';
 import {MANIFEST_URL} from '../assets/constants';
 import AmbientTrackCell from './AmbientTrackCell';
+
 import store from '../store';
 
 const mapStateToProps = state => ({
-  
   tracks: state.tracks,
-  cells: state.cells,
   hasErrored: state.hasErrored,
   isLoading: state.isLoading,
 })
@@ -62,6 +61,7 @@ class AmbientTrackCarousel extends Component {
       </View>
     )
   }
+
   renderForIsLoading() {
     return (
       <View style={[Masonry.fillsContainer, {backgroundColor: Colors.spaceRed}]}>
@@ -74,8 +74,8 @@ class AmbientTrackCarousel extends Component {
     this.setState({
       focusCellIndex: index
     })
-
-    // console.log('there are a total of: ' + this.props.cells.length + 'cells');
+    console.log(this._carousel.props);
+    let focusCell = this.state.cells[index];
 
   }
 

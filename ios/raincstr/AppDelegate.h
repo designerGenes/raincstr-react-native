@@ -8,6 +8,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <GoogleCast/GoogleCast.h>
+#import <React/RCTBundleURLProvider.h>
+#import <React/RCTRootView.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
