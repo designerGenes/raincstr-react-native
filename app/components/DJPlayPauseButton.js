@@ -37,7 +37,7 @@ export default class DJPlayPauseButton extends Component {
         <TouchableOpacity onPress={this._onPress}>
           <Image
             style={[{height: '50%', aspectRatio: 1}, this.props.style]}
-            source={this.buttonStates[this.state.buttonState]} />
+            source={this.buttonStates[this.props.buttonState]} />
         </TouchableOpacity>
 
     )

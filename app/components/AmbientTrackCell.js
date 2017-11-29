@@ -4,14 +4,17 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Colors, Masonry} from '../config';
 import {connect} from 'react-redux';
 import {tracksFetchData} from '../ducks/tracks';
-import {setPlayer, setFocusURL, addCell} from '../ducks/app';
+import {setPlayer, setFocusURL, addCell, setIsPlaying} from '../ducks/app';
 import {MANIFEST_URL} from '../assets/constants';
 import DJPlayPauseButton from './DJPlayPauseButton';
 import {Player, MediaStates } from 'react-native-audio-toolkit';
 const uuidv4 = require('uuid/v4');
 
 const mapStateToProps = state => ({
-  appState: state.app
+  entireState: state.app,
+  player: state.app.player,
+  focusURL: state.app.focusURL,
+  globalPlayerIsPlaying: state.app.isPlaying
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -19,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchData: (url) => dispatch(tracksFetchData(url)),
     addCell: (cell) => dispatch(addCell(cell)),
     setPlayer: (player) => dispatch(setPlayer(player)),
+    setIsPlaying: (isPlaying) => dispatch(setIsPlaying(isPlaying)),
     setFocusURL: (url) => dispatch(setFocusURL(url)),
   }
 }
@@ -39,8 +43,7 @@ class AmbientTrackCell extends Component {
         this.setState({trackDuration: seconds})
     });
 
-    this._onPressPlayPauseButton = this._onPressPlayPauseButton.bind(this);
-    console.log('created AmbientTrackCell');
+
   }
 
   setPlayPauseButtonState(newState) {
@@ -49,11 +52,13 @@ class AmbientTrackCell extends Component {
 
   setPlaybackTo(shouldPlay) {
     if (shouldPlay) {
-      this.refs.playPauseButton.setButtonState(1);
+
+
+      // this.refs.playPauseButton.setButtonState(1);
       this.setState({isPlaying: true})
       this.player.play(() => {
         if (this.props.onPlay) { this.props.onPlay(this) }
-        var existingPlayer = this.props.appState.player;
+        var existingPlayer = this.props.player;
         if (existingPlayer) {
           // silence
           if (existingPlayer !== this.player) {
@@ -63,29 +68,30 @@ class AmbientTrackCell extends Component {
 
         this.props.setPlayer(this.player);
         this.props.setFocusURL(this.props.track.url);
+        this.props.setIsPlaying(true);
       })
     } else {
-      this.refs.playPauseButton.setButtonState(0);
+      // this.refs.playPauseButton.setButtonState(0);
       this.player.pause(() => {
         if (this.props.onPause) { this.props.onPause(this) }
       });
+      if (this.props.focusURL === this.props.track.url) {
+        this.props.setIsPlaying(false);
+      }
       this.setState({isPlaying: false})
     }
   }
 
-
-
-  _onPressPlayPauseButton() {
+  _onPressPlayPauseButton = () => {
     this.setPlaybackTo(!this.state.isPlaying);
   }
 
   render() {
-    const appState = this.props.appState;
     const track = this.props.track;
     const assocColor = (track.category === 'rain' ? Colors.rainBlue : Colors.spaceRed );
     const completionHeight = (100 * (this.state.trackCompletionPercent / 100)) + '%';
-    const focusURLisCellURL = (this.props.focusURL === track.url) && appState.isPlaying;
-
+    const focusURLisCellURL = (this.props.focusURL === track.url) && this.props.globalPlayerIsPlaying;
+    console.log('is playing: ' + this.props.isPlaying);
     return (
       <View style={{flex: 0}}>
         <View style={[styles.cellShell, {width: this.props.width, backgroundColor: Colors.gray1}]}>
@@ -100,7 +106,7 @@ class AmbientTrackCell extends Component {
           <View style={{flex: 1, backgroundColor: Colors.gray1}}>
             <View style={{position: 'absolute', height: '100%', zIndex: 1, left: 30, top: 20}}>
               <DJPlayPauseButton
-                buttonState={(focusURLisCellURL ? 1 : 0)}
+                buttonState={(this.props.isPlaying ? 1 : 0)}
                 ref='playPauseButton'
                 onPress={this._onPressPlayPauseButton}
               />

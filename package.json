@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"fetch": "^1.1.0",
+		"google-cast-controller": "file:node_modules/google-cast-controller",
 		"lodash": "^4.17.4",
 		"react": "16.0.0-beta.5",
 		"react-native": "0.49.3",

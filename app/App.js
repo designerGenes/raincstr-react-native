@@ -3,11 +3,11 @@ import RaincstrStack from './config/router';
 import {View} from 'react-native';
 import store from './store';
 import {Provider} from 'react-redux';
-import CastController from './controllers/CastController';
 
+import GoogleCastController from 'google-cast-controller';
 
 const bootstrap = () => {
-  CastController.initController();
+  
 }
 
 export default class App extends Component<{}> {

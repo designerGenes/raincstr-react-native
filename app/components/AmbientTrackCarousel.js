@@ -13,6 +13,8 @@ const mapStateToProps = state => ({
   tracks: state.tracks,
   hasErrored: state.hasErrored,
   isLoading: state.isLoading,
+  focusURL: state.app.focusURL,
+  isPlaying: state.app.isPlaying,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -26,6 +28,10 @@ class AmbientTrackCarousel extends Component {
     this.props.fetchData(MANIFEST_URL);
   }
 
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps);
+  }
+
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
@@ -35,22 +41,28 @@ class AmbientTrackCarousel extends Component {
       focusCellIndex: 0
     }
   }
+  _onScroll() {
 
+  }
 
   _renderItem({item, index} ) {
+    
     const {height, width} = this.props;
     const cellWidth = width * 0.8;
     const newCell = <AmbientTrackCell
       height={height}
       width={cellWidth}
       onPlay={this._onPlayBegan}
+      isPlaying={this.props.focusURL === item.url && this.props.isPlaying }
       track={item} />;
 
     return newCell;
 
   }
 
-  _onPlayBegan(cell) {  }
+  _onPlayBegan(cell) {
+
+   }
 
 
 
@@ -74,12 +86,13 @@ class AmbientTrackCarousel extends Component {
     this.setState({
       focusCellIndex: index
     })
-    console.log(this._carousel.props);
+
     let focusCell = this.state.cells[index];
 
   }
 
   render() {
+    console.log('rendering Carousel');
     const {height, width} = this.props;
     var tracks = this.props.tracks.tracks || [];
 
@@ -93,16 +106,18 @@ class AmbientTrackCarousel extends Component {
 
     return (
       <View style={[Masonry.fillsContainer]}>
-        <Carousel
-              ref={(c) => { this._carousel = c;}}
-              data={tracks}
-              renderItem={this._renderItem}
-              sliderWidth={width}
-              itemWidth={width * 0.8}
-              containerCustomStyle={[Masonry.fillsContainer, styles.carouselContainer]}
-              activeSlideAlignment='start'
-              onSnapToItem={this._onSnapToItem}
-              contentContainerStyle={[{backgroundColor: 'black'}]}/>
+      <Carousel
+            ref={(c) => { this._carousel = c;}}
+            data={tracks}
+            renderItem={this._renderItem}
+            sliderWidth={width}
+            itemWidth={width * 0.8}
+            containerCustomStyle={[Masonry.fillsContainer, styles.carouselContainer]}
+            activeSlideAlignment='start'
+            onSnapToItem={this._onSnapToItem}
+            onScroll={this._onScroll}
+            extraData={this.state.focusCellIndex}
+            contentContainerStyle={[{backgroundColor: 'black'}]}/>
       </View>
      )
 
@@ -113,6 +128,12 @@ const styles = StyleSheet.create({
   carouselContainer: {
     backgroundColor: 'black',
     padding: '10%',
+  },
+  debugText: {
+    padding: 5,
+    fontSize: 14,
+    color: 'white',
+    fontWeight: 'bold'
   },
 })
 
